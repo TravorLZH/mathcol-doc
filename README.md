@@ -1,5 +1,5 @@
-mathcol-doc
-===========
+mathcol-doc ![license][1]
+=========================
 
 > My collection of math problems & solutions written in LaTeX
 
@@ -17,3 +17,6 @@ In the future, I plan to write my explanations for these problems.
 * Derivation of Fourier series along with Parseval's theorem
 * &zeta;(2) and &zeta;(4)
 * Calculation of a matrix exponential
+
+[1]: https://img.shields.io/github/license/TravorLZH/mathcol-doc
+
