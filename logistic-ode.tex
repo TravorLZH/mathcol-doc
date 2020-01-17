@@ -1,0 +1,138 @@
+\section{Logistic equation}
+
+\subsection{Why Logistic Equation}
+
+\textbf{Logistic equation} is an \textit{Ordinary Differential Equation} that is
+used to analyze the population change in a system. Before the theory of logistic
+model is established, people were considering population using exponential
+model (in which the rate of growth/decay is directly proportional to the current
+population), and the differential equation that describes this is:
+
+$$
+\frac{dN}{dt}=rN
+\footnote{$N$ stands for the current population, $t$ stands for time, and $r$
+is the speed factor of the rate of change}
+$$
+
+In fact, a system may also have a limitation of resources for a species to live,
+so the proposer Malthus believed that the population in a system may oscillate
+and eventually will reach a number, which is known as the \textbf{Carrying
+capacity}. Therefore, the differential equation of logistic model is:
+
+$$
+\frac{dN}{dt}=rN\left(\frac{K-N}K\right)
+\footnote{$K$ is the carrying capacity}
+$$
+
+As you can see, when $N$ is greater than $K$, the population will decrease, and
+if $N$ is less than $K$, the population will increase. Since the size of $N$
+affects the sign of the derivative.
+
+\subsection{Solve Logistic Equation}
+
+Since we have known the origin and the meaning of this differential equation,
+we can now figure a function out that can satisfy this population model along
+with the equation.
+
+Using Leibniz notation to represent derivatives can help us solve differential
+equation by separating the differentiated variables:
+
+$$dN=rN\left(\frac{K-N}k\right)dt$$
+
+Since $r$ and $K$ are constants, we can leave $r$ alone and let the whole
+polynomial related to $N$ be on the left side of the equation:
+
+$$
+\begin{aligned}
+	\frac{dN}{N(K-N)}=\frac{r}Kdt \\
+	\int\frac{dN}{N(K-N)}=\int\frac{r}Kdt
+\end{aligned}
+$$
+
+The right part we can immediately come up with the answer $\frac{r}Kt+C$, but
+the left part we need to cope with it longer:
+
+$$
+\begin{aligned}
+	\because\int\frac{dN}{N(K-N)}=\int\frac{A}{N}dN+\frac{B}{K-N}dN \\
+	\therefore A(K-N)+BN=1 \\
+	\therefore AK-AN+BN=1 \\
+	\therefore AK-N(A-B)=1 \\
+\end{aligned}
+$$
+
+Since we know that $N$ is a variable and $K$ is a constant, we can quickly
+conclude that the factor of the variable must be zero in order to let the result
+be $1$:
+
+$$
+\begin{aligned}
+	\because\begin{cases}
+		AK=1 \\
+		A-B=0
+	\end{cases} \\
+	\therefore A=B=\frac1K
+\end{aligned}
+$$
+
+Therefore the integral of the left part is:
+
+$$
+\begin{aligned}
+	\int\frac{dN}{N(K-N)}
+	&=\frac1K\left(\int\frac{dN}{N}+\int\frac{dN}{K-N}\right) \\
+	&=\frac1K\left(\ln(N)-\ln(K-N)+C_0\right) \\
+	&=\frac1K\ln(\frac{N}{K-N})+C'
+\end{aligned}
+$$
+
+Because both left and right parts of the equations are integrated, we can now
+evaluate them to the original equation:
+
+$$
+\begin{aligned}
+	\frac1K\ln(\frac{N}{K-N})+C'=\frac{r}Kt+C \\
+	\ln(\frac{N}{K-N})=rt+C'' \\
+	\frac{N}{K-N}=C_0e^{rt} \\
+	N=C_0e^{rt}(K-N) \\
+	N(1+C_0e^{rt})=KC_0e^{rt} \\
+	N=\frac{KC_0e^{rt}}{1+C_0e^{rt}} \\
+	N=N(t)=\frac{K}{1+C_1e^{-rt}}
+\end{aligned}
+$$
+
+Finally we obtain the solution of this equation, which is called logistic
+function. However this is not finished yet, the meaning of $C_1$ is not clear
+enough. We can add a limiting condition where $N(0)=N_0$\footnote{To specify
+the initial population of the system}:
+
+$$
+N(0)=\frac{K}{1+C_1e^{-r0}}=\frac{K}{1+C_1}
+$$
+
+We know that when $t=0$, $N$ shall be equal to the initial population $N_0$, so:
+
+$$
+\begin{aligned}
+	N_0=\frac{K}{1+C_1} \\
+	N_0(1+C_1)=K \\
+	N_0C_1=K-N_0 \\
+	C_1=\frac{K-N_0}{N_0}
+\end{aligned}
+$$
+
+Let's plug $C_1$ in terms of $N_0$ to the function:
+
+$$
+\begin{aligned}
+	N(t)
+	&=\frac{K}{1+\frac{K-N_0}{N_0}e^{-rt}} \\
+	&=\frac{KN_0}{N_0+(K-N_0)e^{-rt}}
+\end{aligned}
+$$
+
+Finally we have the formula for logistic function:
+
+$$
+N(t)=\frac{KN_0}{N_0+(K-N_0)e^{-rt}}
+$$

@@ -1,0 +1,127 @@
+\section{Integral of $\frac{1}{x^4+1}$}
+When we first see function $\frac{1}{x^4+1}$, it always reminds us of the
+derivative of arc tangent (which is $\frac{1}{x^2+1}$). Therefore we can solve
+this using some intuitions of arc tangent. First step, we try to make it into
+multiplication of polynomials in order to facilitate the integration:
+
+$$
+\begin{aligned}
+	x^4+1
+	&=(x^4+2x^2+1)-2x^2 \\
+	&=(x^2+1)^2-(\sqrt2x)^2 \\
+	&=(x^2-\sqrt2x+1)(x^2+\sqrt{2x}+1) \\
+\end{aligned}
+$$
+
+It seems that we are now able to deal with it using partial fractions:
+
+$$\frac{1}{x^4+1}=\frac{Ax+B}{x^2-\sqrt2x+1}+\frac{Cx+D}{x^2+\sqrt2x+1}$$
+
+Since we know the numerator of the fraction in the left part is one, we can
+make the addition of numerator equal to $1$:
+
+$$
+\begin{aligned}
+	1=&(Ax+B)(x^2+\sqrt2x+1)+(Cx+D)(x^2-\sqrt2x+1) \\
+	1=&(Ax^3+A\sqrt2x^2+Ax)+(Bx^2+B\sqrt2x+B)+ \\
+	&(Cx^3-C\sqrt2x^2+Cx)+(Dx^2-D\sqrt2x+D) \\
+	1=&(A+C)x^3+[\sqrt2(A-C)+B+D]x^2+[A+C+\sqrt2(B-D)]x+B+D
+\end{aligned}
+$$
+
+We can turn this nasty polynomial equation into linear equations:
+
+$$
+\begin{aligned}
+	\begin{cases}
+		A+C=0 \\
+		\sqrt2(A-C)+B+D=0 \\
+		A+C+\sqrt2(B-D)=0 \\
+		B+D=1 \label{e_d}
+	\end{cases} \\
+	\because B+D=1 \\
+	\therefore \sqrt2(A-C)+1=0 \\
+	\therefore A-C=-\frac{1}{\sqrt2} \\
+	\because A+C=0 \\
+	\therefore 2A=-\frac{1}{\sqrt2} \\
+	\therefore A=-\frac{1}{2\sqrt2} \\
+	\therefore C=\frac{1}{2\sqrt2} \\
+	\because B+D=1,B-D=0 \\
+	\therefore B=D=\frac{1}2 \\
+	\begin{cases}
+		A=-\frac{1}{\sqrt2} \\
+		B=\frac{1}2 \\
+		C=\frac{1}{\sqrt2} \\
+		D=\frac{1}2 \\
+	\end{cases} \\
+	\therefore \frac{1}{x^4+1}=\frac{-\frac{1}{2\sqrt2}x+
+	\frac{1}2}{x^2-\sqrt2x+1}+\frac{\frac{1}{2\sqrt2}x+
+	\frac{1}2}{x^2+\sqrt2x+1}
+\end{aligned}
+$$
+
+Since we split the one fraction into two fractions in which each denominator is
+made of a second-power trinomial, so we can complete squares for integrating
+for arc tangent.
+
+\begin{eqnarray}
+	\begin{aligned}
+		x^2-\sqrt2x+1
+		&=(x^2-\sqrt2x+\frac{1}2)+\frac{1}2 \\
+		&=(x-\frac{1}{\sqrt2})^2+\frac{1}2
+	\end{aligned} \label{eqn1}\\
+	x^2+\sqrt2x+1=(x+\frac{1}{\sqrt2})^2+\frac{1}2 \label{eqn2}
+\end{eqnarray}
+
+Now we can integrate since everything is ready. The integration starts with
+partial fractions and then plugging in \ref{eqn1} and \ref{eqn2}
+
+$$
+\begin{aligned}
+	\int\frac{dx}{x^4+1}&=\int\frac{-\frac{1}{2\sqrt2}x+
+	\frac{1}2}{x^2-\sqrt2x+1}dx+\int\frac{\frac{1}{2\sqrt2}x+
+	\frac{1}2}{x^2+\sqrt2x+1}dx \\
+	&=\frac{1}{4\sqrt2}\left(\int\frac{-2x+2\sqrt2}{(x-\frac{1}{\sqrt2})^2
+	+\frac{1}2}dx+\int\frac{2x+2\sqrt2}{(x+\frac{1}{\sqrt2})^2+\frac{1}2}dx
+	\right)
+\end{aligned}
+$$
+
+Now we start dealing with them with the first part:
+
+$$
+\begin{aligned}
+	\int\frac{-2x+2\sqrt2}{(x-\frac{1}{\sqrt2})^2+\frac{1}2}dx
+	&=-\int\frac{2x}{(x-\sqrt2)^2+\frac{1}2}dx+
+	\int\frac{2\sqrt2}{(x-\sqrt2)^2+\frac{1}2}dx
+\end{aligned}
+$$
+
+It seems like a \textbf{$u$-substitution} is applicable in the first integral,
+so we let $u=(x-\sqrt2)^2+\frac{1}2$, so $du=2xdx$. Then the whole thing is
+transformed into this:
+
+$$
+\begin{aligned}
+	-\int\frac{2x}{(x-\sqrt2)^2+\frac{1}2}dx+
+	\int\frac{2\sqrt2}{(x-\sqrt2)^2+\frac{1}2}dx
+	&=-\int\frac{du}u+
+	\int\frac{2\sqrt2}{(x-\sqrt2)^2+\frac{1}2}dx \\
+	&=-\ln(u)+
+	\int\frac{2\sqrt2}{(x-\sqrt2)^2+\frac{1}2}dx \\
+	&=-\ln(x^2-\sqrt2x+1)+
+	\int\frac{2\sqrt2}{(x-\sqrt2)^2+\frac{1}2}dx \\
+	&=-\ln(x^2-\sqrt2x+1)+
+	\int\frac{2\sqrt2}{(x-\frac{1}{\sqrt2})^2
+	+(\frac{1}{\sqrt2})^2}dx \\
+	&=-\ln(x^2-\sqrt2x+1)+\sqrt2\arctan(\sqrt2x-1)
+\end{aligned}
+$$
+
+The integration of the second integral is very similar, at last the indefinite
+integral of $\frac1{x^4+1}$ is:
+
+$$
+\frac1{4\sqrt2}\left(\ln({x^2+\sqrt2x+1\over x^2-\sqrt2x+1})+
+2\arctan(\sqrt2x+1)+2\arctan(\sqrt2x-1)\right)+C
+$$

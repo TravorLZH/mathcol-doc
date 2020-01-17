@@ -1,0 +1,102 @@
+\section{Integral of the \textit{sinc} function}
+
+Not every integral can be evaluated by \textbf{Newton-Leibniz formula}. Some of
+them require certain tricks, and this integral is a perfect example:
+
+\begin{equation}
+	\int_0^\infty{\sin(x)\over x}dx
+	\label{int-sinc}
+\end{equation}
+
+The function inside the integral of (\ref{int-sinc}) is called the
+\textit{sinc} function, which is extremely useful in the field of signal and
+image processing. To integrate this function, we could consider finding the
+Laplace transform of this function:
+
+\begin{equation}
+	\int_0^\infty{\sin(x)\over x}dx=\mathcal{L}
+	\left\{\sin(x)\over x\right\}(0)
+	\label{sinc-laplace}
+\end{equation}
+
+Therefore, the integration of \textit{sinc} is divided into two steps:
+
+\begin{itemize}
+	\item Find the Laplace transform of \textit{sinc}
+	\item Evaluate the Laplace transform at $s=0$
+\end{itemize}
+
+\subsection{Laplace transform of \textit{sinc}}
+
+We denote the Laplace transform of \textit{sinc} as $F(s)$, conveniencing the
+evaluation.
+
+$$F(s)=\int_0^\infty{\sin(x)\over x}e^{-sx}dx$$
+$$
+\begin{aligned}
+	F'(s)&={d\over ds}\int_0^\infty{\sin(x)\over x}e^{-sx}dx \\
+	&=\int_0^\infty{\partial\over\partial s}{\sin(x)\over x}e^{-sx}dx \\
+	&=-\int_0^\infty\sin(x)e^{-sx}dx=-\mathcal{L}\{\sin(x)\}
+\end{aligned}
+$$
+
+Now we are to find the Laplace transform of sine function. It will take two
+iterations of integration by parts if we evaluate the integral directly.
+However, if we complexify it, turning $\sin(x)$ to $\Im\left(e^{ix}\right)$ in
+other words, we can make use of the properties of exponential function so that
+the process becomes easier.
+
+$$
+\begin{aligned}
+	\mathcal{L}\{\sin(x)\}&=\int_0^\infty\Im\left(e^{ix}\right)e^{-sx}dx \\
+	&=\Im\left(\int_0^\infty e^{ix-sx}dx\right)
+	=\Im\left(\int_0^\infty e^{(i-s)x}dx\right) \\
+	&=\Im\left(\left.e^{(i-s)x}\over i-s\right|_0^\infty\right) \\
+	&=\Im\left(\lim_{x\to\infty}{e^{(i-s)x}\over i-s}-{1\over i-s}\right) \\
+	&=\Im\left(1\over s-i\right)=\Im\left(s+i\over(s+i)(s-i)\right) \\
+	&=\Im\left(s+i\over s^2+1\right)={1\over s^2+1}
+\end{aligned}
+$$
+
+After plugging the result of this function, we simplify the expression of
+$F'(s)$:
+
+\begin{equation}
+	F'(s)=-{1\over s^2+1}
+	\label{sinc-deriv}
+\end{equation}
+
+Before trying to find the exact $F(s)$, we also need to consider its property,
+especially its horizontal assymptote.
+
+$$
+\lim_{s\to\infty}F(s)=\int_0^\infty{\sin(x)\over x}
+\lim_{s\to\infty}\left(e^{-sx}dx\right)=0
+$$
+
+Therefore, $F(s)$ can be represented by what was concluded in equation
+(\ref{sinc-deriv}) via expressing it as a subtraction:
+
+$$
+\begin{aligned}
+	F(s)&=F(s)-\lim_{b\to\infty}F(b) \\
+	&=\int_\infty^sF'(t)dt=-\int_s^\infty F'(t)dt \\
+	&=-\int_s^\infty{-1\over t^2+1}dt=\left.\arctan(t)\right|_s^\infty \\
+	&={\pi\over 2}-s
+\end{aligned}
+$$
+
+\subsection{Evaluate the Laplace transform of \textit{sinc} at $s=0$}
+
+Since we have all the necessary equations calculated, we can now take down the
+integral by simply plugging in that sacred zero.
+
+$$
+\begin{aligned}
+	\int_0^\infty{\sin(x)\over x}dx&=\mathcal{L}\left\{\sin(x)\over x\right\}(0) \\
+	&=F(0)={\pi\over2}-0={\pi\over2}
+\end{aligned}
+$$
+
+As it turns out, the integral of \textit{sinc} from zero to infinity is half of
+$\pi$.

@@ -1,0 +1,113 @@
+\section{Prove circle area using integrals in Cartesian plane}
+From what had been taught in a Geometry class, the area of a circle can be
+calculated using $A=\pi r^2$, and it is possible to be proven using different
+approaches.
+
+As we know, circle in Cartesian plane is defined by $x^2+y^2=r^2$, where $r$
+determines the radius.
+
+\begin{figure}[H]
+	\centering{
+	\begin{tikzpicture}
+		\draw[->] (-3,0) -- (3,0) node[right] {$x$};
+		\draw[->] (0,-3) -- (0,3) node[above] {$y$};
+		\draw[domain=0:6.28318,smooth,variable=\x,blue]
+		plot ({2*cos(\x r)},{2*sin(\x r)});
+	\end{tikzpicture}
+	}
+	\caption{Graph of Cartesian equation $x^2+y^2=2^2$}
+	\label{circ}
+\end{figure}
+
+In this case when we solve for $y$ we can get:
+
+$$y=\pm \sqrt{r^2-x^2}$$
+
+Apparently, it is not a valid function, so we ignore the negative part of the
+root; we eventually find the function for a semi-circle:
+
+$$f(x)=\sqrt{r^2-x^2}$$
+
+So if we can integrate this semi-circle, we are able to find the area of one
+circle by multiplying it by a factor of $2$.
+
+Let's begin with the integration of $f(x)$:
+
+$$\int_{-r}^r f(x)dx=\int_{-r}^r \sqrt{r^2-x^2}dx$$
+
+Before dealing with the bounds of the definite integral, we first cope with the
+\textbf{antiderivative} of this function. When integrating with square roots, I
+always think of changing the constant inside the root into one. So let's move
+$r$ out of the integral:
+
+$$\int_{-r}^r\sqrt{r^2-x^2}dx=r\cdot\int_{-r}^r\sqrt{1-(\frac{x}r)^2}dx$$
+
+When I see one minus square of a term under a radical sign, I always think of
+the \textbf{Pythagorean identity of trignonometric functions}. Therefore we can
+do substitution this way:
+
+$$
+\begin{aligned}
+	\frac{x}r=\sin(t) \\
+	\therefore x=r\sin(t) \\
+	\therefore dx=r\cos(t)dt
+\end{aligned}
+$$
+
+We also need to have a formula to convert $t$ to $x$ in order to handle the
+integral bounds, so we solve for $t$ below:
+
+\begin{equation}
+	t=\arcsin(\frac{x}r)
+	\label{subst-back}
+\end{equation}
+
+Since we have the substitute for both $x$ and $dx$, we can plug them into the
+original integral:
+
+$$
+\begin{aligned}
+	r\cdot\int_{t_0}^{t_1}\sqrt{1-(\frac{x}r)^2}dx
+	&=r\cdot\int_{t_0}^{t_1}\sqrt{1-\sin(t)^2}r\cos(t)dt \\
+	&=r^2\int_{t_0}^{t_1}\cos(t)^2dt
+\end{aligned}
+$$
+
+This time we need to eliminate the square of cosine. Since we know the
+\textbf{double-angle identity of cosine} is $\cos(2\theta)=2\cos(\theta)^2-1$,
+we solve for $\cos(\theta)^2$ and apply another substitution:
+
+$$\cos(\theta)^2=\frac{\cos(2\theta)+1}2$$
+
+$$
+\begin{aligned}
+	r^2\int_{t_0}^{t_1}\cos(t)^2dt
+	&=r^2\int_{t_0}^{t_1}\frac{\cos(2t)+1}2dt \\
+	&=\frac{1}4r^2\int_{t_0}^{t_1}(2\cos(2t)+2)dt \\
+	&=\frac{1}4r^2\left[\sin(2t)+2t\right]^{t_1}_{t_0} \\
+\end{aligned}
+$$
+
+Congratulations! We have successfully figured out the \textbf{antiderivative}
+of this semi-circle function. It is time to cope with the \textbf{definite
+integral}. Instead of making the antiderivative in terms of $x$, we can
+convert the bound using Equation \ref{subst-back}
+
+$$
+\begin{aligned}
+	t_0=\arcsin(\frac{-r}r)=-\frac{\pi}2 \\
+	t_1=\arcsin(\frac{r}r)=\frac{\pi}2 \\
+	\therefore r\cdot\int_{-r}^{r}\sqrt{1-(\frac{x}r)^2}dx
+	&=r^2\cdot\int_{-\frac{\pi}2}^{\frac{\pi}2}\cos(t)^2dt \\
+	&=\frac{1}4r^2\left[\sin(2t)+2t\right]^{t=\frac{\pi}2}
+	_{t=-\frac{\pi}2} \\
+	&=\frac{1}4r^2(2\pi) \\
+	&=\frac{1}2\pi r^2
+\end{aligned}
+$$
+
+We are not finished yet since this is the formula for the area of a
+semi-circle; if we want full circle, we shall double it. Eventually the
+formula to find the area of a circle is:
+
+$$A=2\cdot\frac{1}2\pi r^2=\pi r^2$$
