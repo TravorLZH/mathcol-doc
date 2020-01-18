@@ -1,0 +1,51 @@
+\section{Derivation of Euler's formula}
+
+Euler's formula is a basic tool that is widely used in the field of complex
+analysis. It can directly tell that multiplication of complex numbers indicates
+rotations.
+
+In this section, Euler's formula will be proved using the \textbf{Maclaurin
+expansion} of the following three function.
+
+\begin{equation}
+	e^x=\sum_{n=0}^\infty{x^n\over n!}
+	=1+x+{x^2\over2!}+{x^3\over3!}+\dots
+	\label{taylor-exp}
+\end{equation}
+\begin{equation}
+	\sin(x)=\sum_{n=0}^\infty{(-1)^n\over(2n+1)!}x^{2n+1}
+	=x-{x^3\over3!}+{x^5\over5!}-{x^7\over7!}+\dots
+	\label{taylor-sin}
+\end{equation}
+\begin{equation}
+	\cos(x)=\sum_{n=0}^\infty{(-1)^n\over(2n)!}x^{2n}
+	=1-{x^2\over2!}+{x^4\over4!}-{x^6\over6!}+\dots
+	\label{taylor-cos}
+\end{equation}
+
+First, if we substitute $x$ with $i\theta$ in the exponential function.
+Therefore, the corresponding Maclaurin series can be written like this:
+
+$$
+\begin{aligned}
+	e^{i\theta}
+	&=1+i\theta+{i^2\theta^2\over2!}+{i^3\theta^3\over3!}+\dots \\
+	&=1+i\theta-{\theta^2\over2!}-{i\theta^3\over3!}+{\theta^4\over4!}
+	+\dots \\
+	&=1-{\theta^2\over2!}+{\theta^4\over4!}-{\theta^6\over6!}+\dots
+	+i\left(\theta-{\theta^3\over3!}+{\theta^5\over5!}-{\theta^7\over7!}
+	+\dots\right)
+\end{aligned}
+$$
+
+By mathematical induction, one can easily see that the real component of this
+expression matches the pattern of equation (\ref{taylor-cos}) and the imaginary
+part matches (\ref{taylor-sin}). Eventually, we inducted Euler's formula.
+
+$$e^{i\theta}=\cos\theta+i\sin\theta$$
+
+When substituting $\theta$ with $\pi$, the formula becomes \textbf{Euler's
+identity}, which puts two transcendental numbers, two units of complex numbers,
+and zero in a single equation.
+
+$$e^{i\pi}+1=0$$
