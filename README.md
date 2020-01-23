@@ -1,5 +1,5 @@
-mathcol-doc ![license][1]
-=========================
+mathcol-doc ![license][1] ![build][2]
+=====================================
 
 > My collection of math problems & solutions written in LaTeX
 
@@ -21,4 +21,4 @@ In the future, I plan to write my explanations for these problems.
 * Proof of Convolution theorem
 
 [1]: https://img.shields.io/github/license/TravorLZH/mathcol-doc
-
+[2]: https://img.shields.io/appveyor/ci/TravorLZH/mathcol-doc
