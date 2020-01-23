@@ -14,7 +14,7 @@ run:	$(OUT)
 	open $(OUT)
 
 $(AUX):	$(SRC) $(DEP) #refs.bib
-	pdflatex $< 2>/dev/null
+	pdflatex $<
 
 $(OUT):	$(AUX)
 	#bibtex $<
