@@ -1,0 +1,162 @@
+\section{Derive Fourier series}
+
+Though it was originally invented to solve the \textbf{heat equation}, this
+series has multiple uses: evaluating $\zeta(s)$\footnote{Examples are found in
+other sections of this collection}, extracting frequences from a wave, and
+representing periodic functions by trigonomic functions. To derive Fourier
+series, I start with representing functions by sines.
+
+\begin{equation}
+	f(t)=A_0+\sum_{n=1}^\infty A_n\sin({2\pi nt\over T}+\phi_n)
+	\label{fourier-orig}
+\end{equation}
+
+In equation (\ref{fourier-orig}), $t$ is the independent variable, and $A_n$ is
+the amplitude of cosine wave with period of $T$. $\phi_n$ denotes the phase of
+each wave. Before performing any transformations, these formulas are used:
+
+\begin{equation}
+	\sin(\alpha+\beta)=\sin\alpha\cos\beta+\sin\beta\cos\alpha
+	\label{sin-angle-sum}
+\end{equation}
+\begin{equation}
+	\cos\theta=\Re(e^{i\theta})={e^{i\theta}+e^{-i\theta}\over2}
+	\label{euler-cos}
+\end{equation}
+\begin{equation}
+	\sin\theta={e^{i\theta}-e^{-i\theta}\over2i}
+	=-i\cdot{e^{i\theta}-e^{-i\theta}\over2}
+	\label{euler-sin}
+\end{equation}
+
+For equation (\ref{euler-cos}) and (\ref{euler-sin}), section
+\ref{eulers-formula-derivation} can be referred. To simplify the formula, we
+can apply the rule in equation (\ref{sin-angle-sum}) to (\ref{fourier-orig}).
+
+\begin{equation}
+	f(t)=A_0+\sum_{n=1}^\infty\left[A_n\sin\left(2\pi nt\over T\right)
+	\cos\phi_n+\sin\phi_n\cos\left(2\pi nt\over T\right)\right]
+	\label{fourier-angle-sum}
+\end{equation}
+\begin{equation}
+	a_n\triangleq A_n\sin\phi_n, b_n\triangleq A_n\cos\phi_n
+	\label{fourier-subst}
+\end{equation}
+
+If we were to apply the substitution in (\ref{fourier-subst}) to equation
+(\ref{fourier-angle-sum}) can be tidier, and solving for $a_n$ and $b_n$ is a
+much simpler problem.
+
+\begin{equation}
+	f(t)=A_0+\sum_{n=1}^\infty\left[a_n\cos\left(2\pi nt\over T\right)
+	+b_n\sin\left(2\pi nt\over T\right)\right]
+	\label{fourier-real}
+\end{equation}
+
+Though it is possible, solving for two variables is still a tough problem;
+however, when we complexify the function using the rule (\ref{euler-cos}) and
+(\ref{euler-sin}), it can be turned into a one-variable problem.
+
+$$
+\begin{aligned}
+	f(t)
+	&=A_0+\sum_{n=1}^\infty\left(
+	a_n\cdot{e^{2\pi int\over T}+e^{-{2\pi int\over T}}\over2}
+	-ib_n\cdot{e^{2\pi int\over T}-e^{-{2\pi int\over T}}\over 2}\right) \\
+	&=A_0+\sum_{n=1}^\infty\left[
+	\left(a_n-ib_n\over 2\right)e^{2\pi int\over T}
+	+\left(a_n+ib_n\over 2\right)e^{-{2\pi int\over T}}
+	\right]
+\end{aligned}
+$$
+
+\begin{equation}
+	c_n=
+	\begin{cases}
+		A_0 & n=0 \\
+		(a_n-ib_n)/2 & n>0 \\
+		(a_{-n}+ib_{-n})/2 & n<0
+	\end{cases}
+	\label{complexify}
+\end{equation}
+
+Now, substituting $A_0$, $a_n$, and $b_n$ with $c_n$ according to
+(\ref{complexify}) is the most brilliant step. The whole function becomes
+expressed as follows:
+
+\begin{equation}
+	f(t)=\sum_{n=0}^\infty c_ne^{2\pi int\over T}
+	+\sum_{n=1}^\infty c_{-n}e^{-{2\pi int\over T}}
+	=\sum_{n=-\infty}^\infty c_ne^{2\pi int\over T}
+	\label{fourier-complex}
+\end{equation}
+
+By integrating $f(t)$ over one of its period, we find the exact value of each
+$c_n$.
+
+$$
+\int_{t_0}^{t_0+T}f(t)e^{-{2\pi ikt\over T}}dt
+=\int_{t_0}^{t_0+T}\sum_{n=-\infty}^\infty c_ne^{2\pi i(n-k)t\over T}
+=\sum_{n=-\infty}^\infty c_n\int_{t_0}^{t_0+T}e^{2\pi i(n-k)t\over T}
+$$
+
+We presume that $k\in\mathbb{Z}$, and the integral of each element in the
+series produces different results. For the element where $k=n$, the result
+conforms to equation (\ref{eq-k-case}). Otherwise the calculation follows
+(\ref{neq-k-case}).
+
+\begin{equation}
+	c_k\int_{t_0}^{t_0+T}dt=c_k(t_0+T-t_0)=c_kT
+	\label{eq-k-case}
+\end{equation}
+\begin{equation}
+	\begin{aligned}
+		c_n\int_{t_0}^{t_0+T}e^{2\pi i(n-k)t\over T}dt
+		&=c_n\left[Te^{2\pi i(n-k)t\over T}\over2\pi i(n-k)\right]
+		^{t_0+T} \\
+		&={c_nT\over2\pi i(n-k)}\cdot e^{2\pi i(n-k)t_0\over T}
+		(e^{2\pi i(n-k)}-1)=0
+	\end{aligned}
+	\label{neq-k-case}
+\end{equation}
+
+As a result, $c_n$ is calculated via:
+
+\begin{equation}
+	c_n={1\over T}\int_{t_0}^{t_0+T}f(t)e^{-{2\pi int\over T}}dt
+	\label{eval-cn}
+\end{equation}
+
+According to the substitution scheme in (\ref{complexify}), we obtain $a_n$ and
+$b_n$ via:
+
+\begin{equation}
+	a_n=c_n+c_{-n}={2\over T}\int_{t_0}^{t_0+T}f(t)
+	\left(e^{-{2\pi int\over T}}+e^{2\pi int\over T}\over 2\right)dt
+	={2\over T}\int_{t_0}^{t_0+T}f(t)\cos\left(2\pi nt\over T\right)dt
+	\label{eval-an}
+\end{equation}
+\begin{equation}
+	b_n={c_{-n}-c_n\over i}={2\over T}\int_{t_0}^{t_0+T}f(t)
+	\left(e^{2\pi int\over T}-e^{-{2\pi int\over T}}\over2i\right)dt
+	={2\over T}\int_{t_0}^{t_0+T}f(t)\sin\left(2\pi nt\over T\right)dt
+	\label{eval-bn}
+\end{equation}
+
+According to (\ref{complexify}) and (\ref{eval-cn}), $A_0$ is calculated by:
+
+$$
+A_0={1\over L}\int_{t_0}^{t_0+T}f(t)dt
+={1\over2}\cdot{2\over L}\int_{t_0}^{t_0+T}f(t)
+\cos\left(2\pi(0)t\over T\right)dt
+={a_0\over2}
+$$
+
+Therefore, we can set $A_0$ to half of $a_0$, so the (\ref{fourier-real}) can
+be transformed into the following where $a_n$ and $b_n$ are computed by
+(\ref{eval-an}) and (\ref{eval-bn}), respectively.
+
+$$
+f(t)={a_0\over2}+\sum_{n=1}^\infty\left[a_n\cos\left({2\pi nt\over T}\right)
++b_n\sin\left({2\pi nt\over T}\right)\right]
+$$

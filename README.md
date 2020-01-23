@@ -11,10 +11,11 @@ Currently, the complete PDF contains the solutions of the following problems:
 * Integral of the _sinc_ function (commonly used in DSP)
 * Integral of the function `1/(x^4+1)`
 * Derivation of Euler's formula
+* Derivation of Fourier's series
 
 In the future, I plan to write my explanations for these problems.
 
-* Derivation of Fourier series along with Parseval's theorem
+* Parseval's theorem
 * &zeta;(2) and &zeta;(4)
 * Calculation of a matrix exponential
 * Proof of Convolution theorem
