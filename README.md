@@ -10,13 +10,14 @@ Currently, the complete PDF contains the solutions of the following problems:
 * Step-by-step solution of the Logistic ordinary differential equation
 * Integral of the _sinc_ function (commonly used in DSP)
 * Integral of the function `1/(x^4+1)`
+* Derivation of Euler's formula
 
 In the future, I plan to write my explanations for these problems.
 
-* Derivation of Euler's formula
 * Derivation of Fourier series along with Parseval's theorem
 * &zeta;(2) and &zeta;(4)
 * Calculation of a matrix exponential
+* Proof of Convolution theorem
 
 [1]: https://img.shields.io/github/license/TravorLZH/mathcol-doc
 
