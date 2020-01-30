@@ -19,6 +19,8 @@ In the future, I plan to write my explanations for these problems.
 * &zeta;(2) and &zeta;(4)
 * Calculation of a matrix exponential
 * Proof of Convolution theorem
+* Euler-Lagrange Equation
+* Brachistochrone
 
 [1]: https://img.shields.io/github/license/TravorLZH/mathcol-doc
 [2]: LICENSE
