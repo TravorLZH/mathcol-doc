@@ -12,6 +12,7 @@ Currently, the complete PDF contains the solutions of the following problems:
 * Integral of the function `1/(x^4+1)`
 * Derivation of Euler's formula
 * Derivation of Fourier's series
+* Euler-Lagrange Equation
 
 In the future, I plan to write my explanations for these problems.
 
@@ -19,7 +20,6 @@ In the future, I plan to write my explanations for these problems.
 * &zeta;(2) and &zeta;(4)
 * Calculation of a matrix exponential
 * Proof of Convolution theorem
-* Euler-Lagrange Equation
 * Brachistochrone
 
 [1]: https://img.shields.io/github/license/TravorLZH/mathcol-doc

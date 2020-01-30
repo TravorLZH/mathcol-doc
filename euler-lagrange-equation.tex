@@ -1,0 +1,173 @@
+\section{Intuition of Euler-Lagrange equation}
+
+Euler-Lagrange equation is a \textbf{partial differential equation} fundamental
+to the study of the \textbf{calculus of variations}, especially in the field of
+optimizing a \textbf{functional}. There are many methods to derive this
+equation rigourously, but this section will give readers a basic understanding
+of where this equation comes from.
+
+\subsection{Functional}
+
+According to calculus of variations, a typical functional is defined as:
+
+\begin{equation}
+	y\mapsto J[y]=\int_{x_0}^{x_1}F(x,y,\dot{y})dx
+	\label{functional-def}
+\end{equation}
+
+where $y$ is a function dependent on $x$. Arc length, for instance, is a
+typical functional:
+
+$$
+y\mapsto L[y]=\int_{x_0}^{x_1}\sqrt{1+\dot{y}^2}dx
+$$
+
+in which $F$ is called the \textbf{core} of the functional.
+
+\subsection{Optimize functional}
+
+In single-variable calculus, we know that a function reaches an extremum if its
+derivative becomes zero, and this is same for functionals. Since the solution
+of the optimization of a problem is a function instead of a real number, we
+assume $y$ is the optimal function and define $f$ as follows:
+
+\begin{equation}
+	f=y+\varepsilon\mu
+	\label{var-y}
+\end{equation}
+
+In equation (\ref{var-y}), $\mu$ is an arbitrary function satisfying
+$\mu(x_0)=\mu(x_1)=0$, and $\varepsilon\in\mathbb{R}$. Since $y$ denotes the
+result of optimization of $J[f]$, the function $N(\varepsilon)=J[f]$ reaches
+its extremum at $\varepsilon=0$. Therefore, we can deduce:
+
+\begin{equation}
+	\left.dN\over d\varepsilon\right|_{\varepsilon=0}=0
+	\label{optimal-functional}
+\end{equation}
+
+In order to find out $y$, we first need to express the derivative in
+(\ref{optimal-functional}). According to \textbf{Leibniz's rule}, we can swap
+the differential operator and integral if the limits of the integral are
+not depending on $\varepsilon$.
+
+$$
+\begin{aligned}
+	{dN\over d\varepsilon}
+	&={d\over d\varepsilon}\int_{x_0}^{x_1}F(x,f,\dot{f})dx \\
+	&=\int_{x_0}^{x_1}{d\over d\varepsilon}F(x,f,\dot{f})dx
+\end{aligned}
+$$
+
+Since $F$ is a multivariable function, we take its total derivative with
+respect to $\varepsilon$. Since $x$ does not depend on $\varepsilon$,
+$dx/d\varepsilon$ is automatically set to zero.
+
+$$
+\begin{aligned}
+	{dN\over d\varepsilon}
+	&=\int_{x_0}^{x_1}{\partial F\over\partial x}
+	{dx\over d\varepsilon}+{\partial F\over\partial f}
+	{df\over d\varepsilon}+{\partial F\over\partial\dot{f}}
+	{d\dot{f}\over d\varepsilon}dx \\
+	&=\int_{x_0}^{x_1}{\partial F\over\partial f}{df\over d\varepsilon}
+	+{\partial F\over\partial\dot{f}}{d\dot{f}\over d\varepsilon}dx
+\end{aligned}
+$$
+
+According to the definition of $f$ in (\ref{var-y}), $df/d\varepsilon$ is
+simply $\mu$, and $d\dot{f}/d\varepsilon=\dot{\mu}$.
+
+$$
+{dN\over d\varepsilon}=\int_{x_0}^{x_1}\mu{\partial F\over\partial f}
++\dot{mu}{\partial F\over\partial\dot{f}}dx
+$$
+
+Using the technique of integration by parts, $\mu$ became factored out. Because
+$\mu(x_0)=\mu(x_1)=0$, there is nothing left outside the integral.
+
+$$
+\begin{aligned}
+	{dN\over d\varepsilon}
+	&=\int_{x_0}^{x_1}\mu{\partial F\over\partial f}dx+
+	\left.\mu{\partial F\over\partial\dot{f}}\right|_{x_0}^{x_1}
+	-\int_{x_0}^{x_1}\mu{d\over dx}{\partial F\over\partial\dot{f}}dx \\
+	&=\int_{x_0}^{x_1}\mu\left({\partial F\over\partial f}-
+	{d\over dx}{\partial F\over\partial\dot{f}}\right)dx
+\end{aligned}
+$$
+
+According to (\ref{optimal-functional}) and \ref{var-y}, we replace
+$dN/d\varepsilon$, $f$, and $\dot{f}$ with zero, $y$, and $\dot{y}$
+respectively.
+
+$$
+0=\int_{x_0}^{x_1}\mu\left({\partial F\over\partial y}-{d\over dx}
+{\partial F\over\partial\dot{y}}\right)dx
+$$
+
+According to the \textbf{fundamental lemma of calculus of variations}, we know
+that the coefficient of $\mu$ must be zero if the integral is zero.
+
+$$
+{\partial F\over\partial y}-{d\over dx}{\partial F\over\partial\dot{y}}=0
+$$
+
+Therefore, we obtain the Euler-Lagrange equation:
+
+\begin{equation}
+	{\partial F\over\partial y}={d\over dx}{\partial F\over\partial\dot{y}}
+	\label{el-def}
+\end{equation}
+
+\subsection{Shortcut for specific functional}
+
+If the core $F$ of a functional does not depend on $x$ ($F=F(y,\dot{y})$), a
+simpler approach is possible without taking the derivative of $\partial
+F/\partial\dot{y}$, facilitating the whole optimization problem.
+
+\begin{flushleft}
+	Step 1: Eliminate the differential operator via integrating factor
+\end{flushleft}
+
+If we multiply (\ref{el-def}) by $\dot{y}$, we can formulate:
+
+$$
+{\partial F\over\partial y}\dot{y}=
+{d\over dx}{\partial F\over\partial\dot{y}}\dot{y}
+$$
+
+According to product rule of differential calculus, the right part of the
+equation is equivalent to:
+
+$$
+{d\over dx}\left({\partial F\over\partial\dot{y}}\dot{y}\right)
+-\ddot{y}{\partial F\over\partial\dot{y}}
+$$
+
+As a result, we can gather a dot product in the left side.
+
+$$
+\left({\partial F\over\partial y}\hat{\i}
++{\partial F\over\partial\dot{y}}\hat{\j}\right)^\top
+\left({dy\over dx}\hat{\i}+{d\dot{y}\over dx}\hat{\j}\right)
+={d\over dx}\left({\partial F\over\partial\dot{y}}\dot{y}\right)
+$$
+
+We can discover that the left side is the total derivative of $F$ with respect
+to $x$, so we find the antiderivative of the both side in order to eliminate
+differential operator.
+
+$$
+F(y,\dot{y})+C={\partial F\over\partial\dot{y}}\dot{y}
+$$
+
+Therefore, when optimizing functionals with cores only depending on $y$ and
+$\dot{y}$, we can use the following equation instead of the Euler-Lagrange
+equation:
+
+$$
+F(y,\dot{y})-\dot{y}{\partial F\over\partial\dot{y}}=C
+$$
+
+where $C$ is a constant.
