@@ -8,7 +8,7 @@ Currently, the complete PDF contains the solutions of the following problems:
 * Integral of the circle function
 * The Gaussian integral
 * Step-by-step solution of the Logistic ordinary differential equation
-* Integral of the _sinc_ function (commonly used in DSP)
+* The Dirichlet Integral (commonly used in DSP)
 * Integral of the function `1/(x^4+1)`
 * Derivation of Euler's formula
 * Derivation of Fourier's series
